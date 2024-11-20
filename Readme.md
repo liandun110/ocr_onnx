@@ -13,5 +13,5 @@ pip install -r requirements.txt
 
 # 运行方式
 ```bash
-python ocr_onnx.py
+python onnxocr/ocr_onnx.py
 ```
