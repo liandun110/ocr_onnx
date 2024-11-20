@@ -2,9 +2,71 @@ import cv2
 import copy
 import numpy as np
 import math
+import onnxruntime
+class ClsPostProcess(object):
+    def __init__(self, label_list=None, key=None, **kwargs):
+        super(ClsPostProcess, self).__init__()
+        self.label_list = label_list
+        self.key = key
 
-from onnxocr.cls_postprocess import ClsPostProcess
-from onnxocr.predict_base import PredictBase
+    def __call__(self, preds, label=None, *args, **kwargs):
+        if self.key is not None:
+            preds = preds[self.key]
+
+        label_list = self.label_list
+        if label_list is None:
+            label_list = {idx: idx for idx in range(preds.shape[-1])}
+
+        # if isinstance(preds, paddle.Tensor):
+        #     preds = preds.numpy()
+
+        pred_idxs = preds.argmax(axis=1)
+        decode_out = [(label_list[idx], preds[i, idx])
+                      for i, idx in enumerate(pred_idxs)]
+        if label is None:
+            return decode_out
+        label = [(label_list[idx], 1.0) for idx in label]
+        return decode_out, label
+
+
+
+
+class PredictBase(object):
+    def __init__(self):
+        pass
+
+    def get_onnx_session(self, model_dir, use_gpu):
+        # 使用gpu
+        if use_gpu:
+            providers = providers=['CUDAExecutionProvider']
+        else:
+            providers = providers = ['CPUExecutionProvider']
+
+        onnx_session = onnxruntime.InferenceSession(model_dir, None,providers=providers)
+
+        # print("providers:", onnxruntime.get_device())
+        return onnx_session
+
+
+    def get_output_name(self, onnx_session):
+
+        output_name = []
+        for node in onnx_session.get_outputs():
+            output_name.append(node.name)
+        return output_name
+
+    def get_input_name(self, onnx_session):
+
+        input_name = []
+        for node in onnx_session.get_inputs():
+            input_name.append(node.name)
+        return input_name
+
+    def get_input_feed(self, input_name, image_numpy):
+        input_feed = {}
+        for name in input_name:
+            input_feed[name] = image_numpy
+        return input_feed
 
 class TextClassifier(PredictBase):
     def __init__(self, args):
