@@ -420,7 +420,7 @@ def sav2Img(org_img, result, name="draw_ocr.jpg"):
 model = ONNXPaddleOcr(use_angle_cls=True, use_gpu=False)
 
 
-img = cv2.imread('/home/suma/projects/ocr_onnx/onnxocr/test_images/00009282.jpg')
+img = cv2.imread('/home/suma/projects/ocr_onnx/onnxocr/test_images/1.jpg')
 s = time.time()
 result = model.ocr(img)
 e = time.time()

@@ -3,7 +3,6 @@ from __future__ import division
 from __future__ import print_function
 import sys
 import math
-#from onnxocr.db_postprocess import DBPostProcess
 import numpy as np
 import cv2
 from shapely.geometry import Polygon
@@ -219,10 +218,7 @@ class PredictBase(object):
             providers = providers=['CUDAExecutionProvider']
         else:
             providers = providers = ['CPUExecutionProvider']
-
         onnx_session = onnxruntime.InferenceSession(model_dir, None,providers=providers)
-
-        # print("providers:", onnxruntime.get_device())
         return onnx_session
 
 
