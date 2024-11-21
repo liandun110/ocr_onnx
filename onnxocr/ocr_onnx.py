@@ -213,25 +213,25 @@ def infer_args():
     parser.add_argument("--det_db_score_mode", type=str, default="fast")
 
     # EAST parmas
-    parser.add_argument("--det_east_score_thresh", type=float, default=0.8)
-    parser.add_argument("--det_east_cover_thresh", type=float, default=0.1)
-    parser.add_argument("--det_east_nms_thresh", type=float, default=0.2)
-
-    # SAST parmas
-    parser.add_argument("--det_sast_score_thresh", type=float, default=0.5)
-    parser.add_argument("--det_sast_nms_thresh", type=float, default=0.2)
-
-    # PSE parmas
-    parser.add_argument("--det_pse_thresh", type=float, default=0)
-    parser.add_argument("--det_pse_box_thresh", type=float, default=0.85)
-    parser.add_argument("--det_pse_min_area", type=float, default=16)
-    parser.add_argument("--det_pse_scale", type=int, default=1)
-
-    # FCE parmas
-    parser.add_argument("--scales", type=list, default=[8, 16, 32])
-    parser.add_argument("--alpha", type=float, default=1.0)
-    parser.add_argument("--beta", type=float, default=1.0)
-    parser.add_argument("--fourier_degree", type=int, default=5)
+    # parser.add_argument("--det_east_score_thresh", type=float, default=0.8)
+    # parser.add_argument("--det_east_cover_thresh", type=float, default=0.1)
+    # parser.add_argument("--det_east_nms_thresh", type=float, default=0.2)
+    #
+    # # SAST parmas
+    # parser.add_argument("--det_sast_score_thresh", type=float, default=0.5)
+    # parser.add_argument("--det_sast_nms_thresh", type=float, default=0.2)
+    #
+    # # PSE parmas
+    # parser.add_argument("--det_pse_thresh", type=float, default=0)
+    # parser.add_argument("--det_pse_box_thresh", type=float, default=0.85)
+    # parser.add_argument("--det_pse_min_area", type=float, default=16)
+    # parser.add_argument("--det_pse_scale", type=int, default=1)
+    #
+    # # FCE parmas
+    # parser.add_argument("--scales", type=list, default=[8, 16, 32])
+    # parser.add_argument("--alpha", type=float, default=1.0)
+    # parser.add_argument("--beta", type=float, default=1.0)
+    # parser.add_argument("--fourier_degree", type=int, default=5)
 
     # params for text recognizer
     parser.add_argument("--rec_algorithm", type=str, default='SVTR_LCNet')
@@ -250,17 +250,17 @@ def infer_args():
     parser.add_argument("--drop_score", type=float, default=0.5)
 
     # params for e2e
-    parser.add_argument("--e2e_algorithm", type=str, default='PGNet')
-    parser.add_argument("--e2e_model_dir", type=str)
-    parser.add_argument("--e2e_limit_side_len", type=float, default=768)
-    parser.add_argument("--e2e_limit_type", type=str, default='max')
+    # parser.add_argument("--e2e_algorithm", type=str, default='PGNet')
+    # parser.add_argument("--e2e_model_dir", type=str)
+    # parser.add_argument("--e2e_limit_side_len", type=float, default=768)
+    # parser.add_argument("--e2e_limit_type", type=str, default='max')
 
     # PGNet parmas
-    parser.add_argument("--e2e_pgnet_score_thresh", type=float, default=0.5)
-    parser.add_argument(
-        "--e2e_char_dict_path", type=str, default="./onnxocr/ppocr/utils/ic15_dict.txt")
-    parser.add_argument("--e2e_pgnet_valid_set", type=str, default='totaltext')
-    parser.add_argument("--e2e_pgnet_mode", type=str, default='fast')
+    # parser.add_argument("--e2e_pgnet_score_thresh", type=float, default=0.5)
+    # parser.add_argument(
+    #     "--e2e_char_dict_path", type=str, default="./onnxocr/ppocr/utils/ic15_dict.txt")
+    # parser.add_argument("--e2e_pgnet_valid_set", type=str, default='totaltext')
+    # parser.add_argument("--e2e_pgnet_mode", type=str, default='fast')
 
     # params for text classifier
     parser.add_argument("--use_angle_cls", type=str2bool, default=False)
@@ -276,26 +276,26 @@ def infer_args():
     parser.add_argument("--warmup", type=str2bool, default=False)
 
     # SR parmas
-    parser.add_argument("--sr_model_dir", type=str)
-    parser.add_argument("--sr_image_shape", type=str, default="3, 32, 128")
-    parser.add_argument("--sr_batch_num", type=int, default=1)
+    # parser.add_argument("--sr_model_dir", type=str)
+    # parser.add_argument("--sr_image_shape", type=str, default="3, 32, 128")
+    # parser.add_argument("--sr_batch_num", type=int, default=1)
 
     #
-    parser.add_argument(
-        "--draw_img_save_dir", type=str, default="./onnxocr/inference_results")
-    parser.add_argument("--save_crop_res", type=str2bool, default=False)
-    parser.add_argument("--crop_res_save_dir", type=str, default="./onnxocr/output")
-
-    # multi-process
-    parser.add_argument("--use_mp", type=str2bool, default=False)
-    parser.add_argument("--total_process_num", type=int, default=1)
-    parser.add_argument("--process_id", type=int, default=0)
-
-    parser.add_argument("--benchmark", type=str2bool, default=False)
-    parser.add_argument("--save_log_path", type=str, default="./onnxocr/log_output/")
-
-    parser.add_argument("--show_log", type=str2bool, default=True)
-    parser.add_argument("--use_onnx", type=str2bool, default=False)
+    # parser.add_argument(
+    #     "--draw_img_save_dir", type=str, default="./onnxocr/inference_results")
+    # parser.add_argument("--save_crop_res", type=str2bool, default=False)
+    # parser.add_argument("--crop_res_save_dir", type=str, default="./onnxocr/output")
+    #
+    # # multi-process
+    # parser.add_argument("--use_mp", type=str2bool, default=False)
+    # parser.add_argument("--total_process_num", type=int, default=1)
+    # parser.add_argument("--process_id", type=int, default=0)
+    #
+    # parser.add_argument("--benchmark", type=str2bool, default=False)
+    # parser.add_argument("--save_log_path", type=str, default="./onnxocr/log_output/")
+    #
+    # parser.add_argument("--show_log", type=str2bool, default=True)
+    # parser.add_argument("--use_onnx", type=str2bool, default=False)
     return parser
 
 class TextSystem(object):
@@ -420,7 +420,7 @@ def sav2Img(org_img, result, name="draw_ocr.jpg"):
 model = ONNXPaddleOcr(use_angle_cls=True, use_gpu=False)
 
 
-img = cv2.imread('/home/suma/projects/ocr_onnx/onnxocr/test_images/1.jpg')
+img = cv2.imread('/home/suma/projects/ocr_onnx/onnxocr/test_images/00009282.jpg')
 s = time.time()
 result = model.ocr(img)
 e = time.time()
